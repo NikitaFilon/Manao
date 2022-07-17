@@ -32,6 +32,6 @@ require __DIR__ . '/header.php';
             </div>
         </div>
     </div>
-    <script src="jsRegister.js"></script>
+    <script src="js/jsRegister.js"></script>
 
 <?php require __DIR__ . '/footer.php'; ?>

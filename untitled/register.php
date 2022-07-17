@@ -2,8 +2,8 @@
 session_start();
 $data = $_POST;
 
-require_once 'json.php';
-require_once 'user.php';
+require_once 'entity\json.php';
+require_once 'entity\user.php';
 
 $db = new Json();
 

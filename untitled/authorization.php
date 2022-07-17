@@ -1,7 +1,7 @@
 <?php
 session_start();
 $data = $_POST;
-require_once 'json.php';
+require_once 'entity\json.php';
 $db = new Json();
 
 if (isset($data['do_login'])) {
@@ -9,7 +9,7 @@ if (isset($data['do_login'])) {
     $user = $db->getSingle($data['login']);
 
     if ($user) {
-        if ($user = $db->getSinglePas($data['login'], $data['password'])) {
+        if ($user = $db->checkPassword(($data['login']), $data['password'])) {
             $_SESSION['logged_user'] = $user['name'];
 
             header('Location: index.php');

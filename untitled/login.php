@@ -7,7 +7,7 @@ require __DIR__ . '/header.php';
         <div class="row">
             <div class="col">
                 <h2>Форма авторизации</h2>
-                <form action="auth.php" method="post" id="idForm" style="display:none">
+                <form action="authorization.php" method="post" id="idForm" style="display:none">
                     <input type="text" class="form-control" name="login" id="login" placeholder="Введите логин"
                            required><br>
                     <input type="password" class="form-control" name="password" id="pass" placeholder="Введите пароль"
