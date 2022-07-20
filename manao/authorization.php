@@ -1,19 +1,20 @@
 <?php
 session_start();
-$data = $_POST;
-require_once 'entity\json.php';
+
+require_once 'entity\Json.php';
 $db = new Json();
 
-if (isset($data['do_login'])) {
+if (isset($_POST['login']) && isset($_POST['password'])) {
     $errors = array();
-    $user = $db->getSingle($data['login']);
+    $user = $db->getSingle($_POST['login']);
 
     if ($user) {
-        if ($user = $db->checkPassword(($data['login']), $data['password'])) {
+        if ($user = $db->checkPassword(($_POST['login']), $_POST['password'])) {
             $_SESSION['logged_user'] = $user['name'];
 
-            header('Location: index.php');
-
+            ?>
+            <script> location.replace("index.php"); </script>
+            <?php
         } else {
 
             $errors[] = 'Пароль неверно введен!';

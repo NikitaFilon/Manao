@@ -1,9 +1,10 @@
 <?php
 
+
 class Json
 {
 
-    private $jsonFile = "user.json";
+    private $jsonFile = "data/user.json";
 
     public function getSingle($login)
     {
@@ -48,8 +49,8 @@ class Json
 
     public function checkEmail($user)
     {
-        $data = $this->getSingle($user['login']);
-        if (@$data['email'] == $user['email']) {
+        $data = $this->getSingle($user->getLogin());
+        if (@$data['email'] == $user->getEmail()) {
             return true;
 
         } else {
