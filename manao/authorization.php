@@ -1,7 +1,8 @@
 <?php
-session_start();
 
-require_once 'entity\Json.php';
+
+require_once 'controlles\Json.php';
+require_once 'conect.php';
 $db = new Json();
 
 if (isset($_POST['login']) && isset($_POST['password'])) {
@@ -27,7 +28,7 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
 
     if (!empty($errors)) {
 
-        echo '<div style="color: red; ">' . array_shift($errors) . '</div><hr>';
+        echo json_encode(array("error" => $errors));
 
     }
 

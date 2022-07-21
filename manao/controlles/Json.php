@@ -17,6 +17,18 @@ class Json
         return !empty($singleData) ? $singleData : false;
     }
 
+    public function delete($login)
+    {
+        $jsonData = file_get_contents($this->jsonFile);
+        $data = json_decode($jsonData, true);
+
+        $newData = array_filter($data, function ($var) use ($login) {
+            return ($var['$login'] != $login);
+        });
+        $delete = file_put_contents($this->jsonFile, json_encode($newData));
+        return $delete ? true : false;
+    }
+
 
     public function checkPassword($login, $password)
     {
@@ -36,26 +48,23 @@ class Json
         }
     }
 
-    public function checkLogin($login)
+    public function checkLogin($user)
     {
-        $data = $this->getSingle($login);
-        if (@$data['login'] == $login) {
-            return true;
+        $data = $this->getSingle($user->getLogin());
 
-        } else {
-            return false;
-        }
+        return !empty($data) ? true : false;
     }
 
     public function checkEmail($user)
     {
-        $data = $this->getSingle($user->getLogin());
-        if (@$data['email'] == $user->getEmail()) {
-            return true;
+        $jsonData = file_get_contents($this->jsonFile);
+        $data = json_decode($jsonData, true);
+        $singleData = array_filter($data, function ($var) use ($user) {
+            return (!empty($var['email']) && $var['email'] == $user->getEmail());
+        });
+        $singleData = array_values($singleData);
+        return !empty($singleData) ? true : false;
 
-        } else {
-            return false;
-        }
     }
 
     public function insert($newData)

@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once 'conect.php';
 require __DIR__ . '/header.php'; ?>
 <body>
 <form id="registraion_form" class="form-horizontal">
